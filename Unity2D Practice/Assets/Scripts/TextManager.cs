@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TextManager : MonoBehaviour {
 
@@ -18,7 +19,6 @@ public class TextManager : MonoBehaviour {
     {
         myText.text = "Is your number:";
         numberText.text = "500";
-        //winText.text = " ";
         max = 1000;
         min = 1;
     }
@@ -87,12 +87,8 @@ public class TextManager : MonoBehaviour {
 
     void Won()
     {
-        myText.text = "I got it! Your number is:";
-        numberText.text = avg + "!";
-        winText.text = "Press Enter to start again!";
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            Reset();
-        }
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        SceneManager.LoadScene(currentSceneIndex + 1);
     }
 }
